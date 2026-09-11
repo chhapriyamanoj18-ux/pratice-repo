@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fill in the Blank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="../assets/CSS/FTB.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- LEVEL -->
+        <div class="header">
+            <div class="level-bar">
+                <div class="level-track" id="levelTrack"></div>
+                <div class="level-text" id="levelText">Question 1 of 5</div>
+            </div>
+        </div>
+
+        <!-- QUESTION -->
+        <div class="question" id="qText"></div>
+
+        <!-- IMAGE -->
+        <div class="image-wrap">
+            <img id="qImg">
+        </div>
+
+        <!-- INPUT -->
+        <div class="input-wrap">
+            <div class="input-box" id="inputBox">
+                <input id="answerInput">
+                <button id="checkBtn">Check</button>
+            </div>
+        </div>
+
+
+        <!-- HINT -->
+        <div class="hint-row">
+            <div class="hint-left">
+                <img src="../assets/images/bulb-img.png">
+                <span id="hintText">Hint: Put a space to separate multiple answers.</span>
+            </div>
+            <button class="hint-btn">Show Hint</button>
+        </div>
+
+        <!-- HINT POPUP -->
+        <div class="hint-popup" id="hintPopup">
+            <span id="hintPopupText"></span>
+        </div>
+
+
+        <!-- NAV -->
+        <div class="nav">
+            <button class="prev" id="prevBtn">← Prev</button>
+            <button class="next" id="nextBtn">Next →</button>
+        </div>
+
+    </div>
+
+    <!-- CORRECT / WRONG POPUP -->
+    <div id="answerPopup" class="popup">
+        <div class="popup-content">
+            <div class="popup-icon" id="popupIcon"></div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupMsg"></p>
+        </div>
+    </div>
+
+    <!-- FINAL POPUP -->
+    <div id="finalPopup""> <div class=" finalpopup-box">
+        <h2 class="final-heading">🎉 Congratulations!</h2>
+        <p id="finalScore"></p>
+        <div id="stars"></div><br> <button onclick="location.reload()" class="playAgain-btn"> Play Again </button>
+    </div>
+    </div>
+
+    <script src="../assets/JavaScript/FTB.js"></script>
+</body>
+
+</html>

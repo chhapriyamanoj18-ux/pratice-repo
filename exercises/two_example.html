@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nature Lab - Modern Lab Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="../assets/CSS/two-example.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+        <div class="header-section">
+            <div class="question-text" id="qText"></div>
+        </div>
+
+        <div class="visual-workspace">
+            <div class="q-image-wrapper">
+                <img src="" alt="Icon" class="q-image" id="topicImg">
+            </div>
+
+            <div class="drop-stack">
+                <div class="drop-box" id="drop1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <span class="drop-hint">DRAG EXAMPLE 1 HERE</span>
+                </div>
+                <div class="drop-box" id="drop2" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <span class="drop-hint">DRAG EXAMPLE 2 HERE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="options-container" id="optionsBox"></div>
+
+        <div class="nav-bar">
+            <button id="prevBtn" class="btn btn-prev" onclick="changeQuestion(-1)">← Prev</button>
+            <button id="nextBtn" class="btn btn-next" onclick="changeQuestion(1)">Next →</button>
+        </div>
+    </div>
+
+    <!-- FINAL POPUP -->
+    <div id="finalPopup">
+        <div class=" finalpopup-box">
+            <h2 class="final-heading">🎉 Congratulations!</h2>
+            <p id="finalScore"></p>
+            <div id="stars"></div><br> <button onclick="location.reload()" class="playAgain-btn"> Play Again </button>
+        </div>
+    </div>
+
+    <script src="../assets/JavaScript/two-example.js"></script>
+</body>
+
+</html>

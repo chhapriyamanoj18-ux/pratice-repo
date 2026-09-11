@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>True / False Journey Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="../assets/CSS/true-false.css">
+</head>
+
+<body>
+
+    <div class="game">
+        <div class="header">
+            <div class="title">🚆 True / False Quiz</div>
+        </div>
+
+        <div class="train-track" id="progress"></div>
+
+        <div class="question-box" id="question">Loading…</div>
+
+        <div class="answers">
+            <button class="answer true" id="trueBtn">TRUE</button>
+            <button class="answer false" id="falseBtn">FALSE</button>
+        </div>
+
+        <div class="nav">
+            <button class="prev" id="prevBtn">← Prev</button>
+            <button class="next" id="nextBtn" disabled>Next →</button>
+        </div>
+    </div>
+
+    <!-- CORRECT / WRONG POPUP -->
+    <div id="answerPopup" class="popup">
+        <div class="popup-content">
+            <div class="popup-icon" id="popupIcon"></div>
+            <h3 id="popupTitle"></h3>
+            <p id="popupMsg"></p>
+        </div>
+    </div>
+
+    <!-- FINAL POPUP -->
+    <div id="finalPopup">
+        <div class=" finalpopup-box">
+            <h2 class="final-heading">🎉 Congratulations!</h2>
+            <p id="finalScore"></p>
+            <div id="stars"></div><br> <button onclick="location.reload()" class="playAgain-btn"> Play Again </button>
+        </div>
+    </div>
+
+    <script src="../assets/JavaScript/true_false.js"></script>
+
+</body>
+
+</html>

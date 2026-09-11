@@ -1,0 +1,209 @@
+:root {
+    --line-color: #22c55e;
+    --left-grad: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    --left-border: #16a34a;
+    --right-grad: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    --right-border: #0284c7;
+    --text-dark: #0f172a;
+    --bg: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Livvic', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #064e3b;
+}
+
+.subtitle {
+    color: #64748b;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.game-container {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    /* Brought boxes closer */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 100px;
+    /* Balanced distance for lines */
+}
+
+#line-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 2;
+    width: 280px;
+    /* Fixed width for consistency */
+}
+
+.item {
+    padding: 18px 22px;
+    border-radius: 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    min-height: 75px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-weight: 100;
+    color: #2f4f4f;
+}
+
+/* Column Specific Styles */
+.left .item {
+    background: var(--left-grad);
+    border-left: 6px solid var(--left-border);
+    justify-content: flex-start;
+}
+
+.right .item {
+    background: var(--right-grad);
+    border-right: 6px solid var(--right-border);
+    justify-content: flex-start;
+}
+
+/* Interaction States */
+.item:hover:not(.matched) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.item.active {
+    border-color: var(--line-color);
+    background: white;
+    transform: scale(1.03);
+    z-index: 10;
+}
+
+.item.matched {
+    cursor: default;
+    opacity: 0.6;
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+/* Proper Anchor Points for Lines */
+.anchor {
+    width: 10px;
+    height: 10px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.left .anchor {
+    right: -15px;
+}
+
+/* Closer to center */
+.right .anchor {
+    left: -15px;
+}
+
+.item.matched .anchor {
+    background: var(--line-color);
+    box-shadow: 0 0 8px var(--line-color);
+}
+
+/* Blink Red Effect */
+.item.error {
+    border-color: #ef4444 !important;
+    /* border-right-color: #ef4444 !important; */
+    background-color: #fef2f2 !important;
+    transform: translateX(5px);
+}
+
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 26px;
+}
+
+/*final score POPUPS */
+#finalPopup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.finalpopup-box {
+    background: #fff;
+    padding: 25px 35px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.final-heading {
+    display: block;
+    font-size: 2em;
+    margin: 20px;
+    font-weight: bold;
+}
+
+#stars {
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+.playAgain-btn {
+    background: #1fb36b;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-block: 10px;
+    cursor: pointer;
+}

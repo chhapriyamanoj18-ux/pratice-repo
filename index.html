@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature Discovery Zig-Zag</title>
+  <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdfdfd;
+      --line: #cbd5e1;
+      --c1: #bae6fd;
+      --c2: #fde68a;
+      --c3: #bbf7d0;
+      --c4: #ddd6fe;
+      --c5: #fecdd3;
+      --text: #1e293b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Livvic', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ===== TOP NAV ===== */
+    .top-nav {
+      padding: 15px 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      border-bottom: 2px solid #f1f5f9;
+      z-index: 10;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.4rem;
+    }
+
+    .logo span {
+      color: #2dd4bf;
+    }
+
+    /* ===== MAP CONTAINER ===== */
+    .map-container {
+      /* flex: 1; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      width: 100%;
+      transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .map-shift {
+      transform: scale(0.9) translateX(-150px);
+      opacity: 0.3;
+      filter: blur(4px);
+      pointer-events: none;
+      /* Prevents clicking background while open */
+    }
+
+    .row {
+      display: flex;
+      width: 100%;
+      margin-bottom: 20px;
+      z-index: 5;
+      justify-content: space-around;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 260px;
+    }
+
+    .node {
+      width: 54px;
+      height: 54px;
+      background: white;
+      border: 4px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .option-card {
+      padding: 22px;
+      border-radius: 28px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      border: 4px solid white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .option-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .card-1 {
+      background-color: var(--c1);
+    }
+
+    .card-2 {
+      background-color: var(--c2);
+    }
+
+    .card-3 {
+      background-color: var(--c3);
+    }
+
+    .card-4 {
+      background-color: var(--c4);
+    }
+
+    .card-5 {
+      background-color: var(--c5);
+    }
+
+    .option-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .option-card p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    /* ===== FULL SCREEN IFRAME LAYER ===== */
+    #page-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      /* Changed to left for better transform logic */
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      visibility: hidden;
+      /* Hidden by default */
+    }
+
+    #page-layer.open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ===== ABSOLUTE CLOSE BUTTON ===== */
+    .btn-close {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+      z-index: 1100;
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }
+
+    .btn-close:hover {
+      background: #dc2626;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="top-nav">
+    <div class="logo">🍃 Learning <span> Quiz</span></div>
+  </nav>
+
+  <main class="map-container" id="main-map">
+    <div class="row">
+      <div class="step-item">
+        <div class="node" style="border-color: var(--c1);">🐳</div>
+        <div class="option-card card-1" onclick="openGate('exercises/mcq.html')">
+          <h3>Choose Answer</h3>
+          <p>Ocean Voyage</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="node" style="border-color: var(--c2);">🐿️</div>
+        <div class="option-card card-2" onclick="openGate('exercises/FTB.html')">
+          <h3>Fill Blanks</h3>
+          <p>Forest Words</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="step-item">
+        <div class="node" style="border-color: var(--c4);">🦚</div>
+        <div class="option-card card-4" onclick="openGate('exercises/matching.html')">
+          <h3>Shadow Match</h3>
+          <p>Tropical Colors</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="node" style="border-color: var(--c3);">🦆</div>
+        <div class="option-card card-3" onclick="openGate('exercises/true_false.html')">
+          <h3>Fact Checker</h3>
+          <p>Pond Life</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom:0;">
+      <div class="step-item">
+        <div class="node" style="border-color: var(--c5);">🦋</div>
+        <div class="option-card card-5" onclick="openGate('exercises/two_example.html')">
+          <h3>Two Examples</h3>
+          <p>Butterfly Hunt</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="page-layer">
+    <button class="btn-close" onclick="closeGate()">✕ CLOSE</button>
+    <iframe id="content-frame" name="content-frame"></iframe>
+  </div>
+
+  <script>
+    const layer = document.getElementById('page-layer');
+    const map = document.getElementById('main-map');
+    const frame = document.getElementById('content-frame');
+
+    function openGate(url) {
+      // 1. Reset the frame source
+      frame.src = "about:blank";
+
+      // 2. Small delay to ensure the DOM processes the reset
+      setTimeout(() => {
+        // Add a 'cache buster' (timestamp) so the browser sees it as a fresh request
+        const freshUrl = url + "?v=" + new Date().getTime();
+        frame.src = freshUrl;
+
+        // 3. Show the layer
+        layer.classList.add('open');
+        map.classList.add('map-shift');
+      }, 50);
+    }
+
+    function closeGate() {
+      layer.classList.remove('open');
+      map.classList.remove('map-shift');
+
+      // Clear the source only after the transition finishes (0.6s)
+      setTimeout(() => {
+        frame.src = "about:blank";
+      }, 600);
+    }
+  </script>
+</body>
+
+</html>

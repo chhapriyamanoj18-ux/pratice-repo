@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Connector Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Livvic:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="../assets/CSS/matching.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Nature Connector Lab</h1>
+        <p class="subtitle">Match the related items together</p>
+    </header>
+
+    <div class="game-container" id="gameArea">
+        <svg id="line-canvas"></svg>
+
+        <div class="column left" id="leftColumn"></div>
+        <div class="column right" id="rightColumn"></div>
+    </div>
+
+    <!-- FINAL POPUP -->
+    <div id="finalPopup">
+        <div class=" finalpopup-box">
+            <h2 class="final-heading">🎉 Congratulations!</h2>
+            <p id="finalScore"></p>
+            <div id="stars"></div><br> <button onclick="location.reload()" class="playAgain-btn"> Play Again </button>
+        </div>
+    </div>
+
+    <script src="../assets/JavaScript/matching.js"></script>
+</body>
+
+</html>
