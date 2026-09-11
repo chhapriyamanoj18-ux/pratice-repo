@@ -28,8 +28,8 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -58,12 +58,11 @@
 
     /* ===== MAP CONTAINER ===== */
     .map-container {
-      /* flex: 1; */
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 900px;
+      max-width: 1400px;
+      padding: 48px 32px;
       margin: 0 auto;
       position: relative;
       width: 100%;
@@ -79,18 +78,18 @@
     }
 
     .row {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 20px;
       width: 100%;
-      margin-bottom: 20px;
       z-index: 5;
-      justify-content: space-around;
     }
 
     .step-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 260px;
+      min-width: 0;
     }
 
     .node {
@@ -204,6 +203,28 @@
       background: #dc2626;
       transform: scale(1.05);
     }
+
+    @media (max-width: 1050px) {
+      .row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .map-container {
+        padding: 32px 20px;
+      }
+
+      .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 450px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -229,9 +250,6 @@
           <p>Forest Words</p>
         </div>
       </div>
-    </div>
-
-    <div class="row">
       <div class="step-item">
         <div class="node" style="border-color: var(--c4);">🦚</div>
         <div class="option-card card-4" onclick="openGate('exercises/matching.html')">
@@ -246,9 +264,6 @@
           <p>Pond Life</p>
         </div>
       </div>
-    </div>
-
-    <div class="row" style="margin-bottom:0;">
       <div class="step-item">
         <div class="node" style="border-color: var(--c5);">🦋</div>
         <div class="option-card card-5" onclick="openGate('exercises/two_example.html')">
